@@ -3,25 +3,27 @@ name: build
 on: [push, pull_request]
 
 jobs:
+
   build:
+
     runs-on: windows-latest
 
     strategy:
+
       fail-fast: false
       matrix:
         build_type: [Release]
         enable_ui: [on]
 
     steps:
+
     - uses: actions/checkout@v3
       with:
         submodules: 'recursive'
 
-    - name: Set up Ninja
-      uses: seanmiddleditch/gha-setup-ninja@master
+    - uses: seanmiddleditch/gha-setup-ninja@master
 
-    - name: Set up MSVC
-      uses: ilammy/msvc-dev-cmd@v1
+    - uses: ilammy/msvc-dev-cmd@v1
 
     - name: Generating Makefiles
       shell: bash
